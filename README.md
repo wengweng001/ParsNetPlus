@@ -17,3 +17,4 @@ Infinite delay next batch prediction -- `InfiniteDelayNext.py`
 Infinite delay current batch prediction -- `InfiniteDelay.py`
 Effect of different label proportion -- `NextBatchPredict_proportion.py`
 A comparison of classification performance on ParsNet++ included in the paper can be run with `plot-cur.ipynb` and `plot-next.ipynb` (Figure 4).
+# ParsNetPlus
