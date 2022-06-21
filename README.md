@@ -6,15 +6,15 @@ derived from "Weakly Supervised Deep Learning Approach in Streaming Environments
 
 # Requirements
 The current version of the code has been tested with:
-* `pytorch 1.3.1`
-* `torchvision 0.4.2`
+* `pytorch 1.9.0`
+* `torchvision 0.10.0`
 
 # Running the experiment
-All experiments with injection molding dataset can be run with `NextBatchPredict.py`, `CurrentBatchPredict.py`, `InfiniteDelayNext.py`, `InfiniteDelay.py`, and `NextBatchPredict_proportion.py`. The link between individual experiments and scripts are listed as follow:
-Sporadic access next batch prediction -- `NextBatchPredict.py`
-Sporadic access current batch prediction -- `CurrentBatchPredict.py`
-Infinite delay next batch prediction -- `InfiniteDelayNext.py`
+The link between individual experiments and scripts are listed as follow:  
+Sporadic access current batch prediction -- `CurrentBatchPredict.py`  
 Infinite delay current batch prediction -- `InfiniteDelay.py`
-Effect of different label proportion -- `NextBatchPredict_proportion.py`
+
+Next batch prediction experiments can be simulated with replacing the dataloader with respective scripts from `dataprep_weakly.load_sensor(labeled_proportion, batchSize, next=False)` to `dataprep_weakly.load_sensor(labeled_proportion, batchSize, next=True)`.
+
 A comparison of classification performance on ParsNet++ included in the paper can be run with `plot-cur.ipynb` and `plot-next.ipynb` (Figure 4).
 # ParsNetPlus
