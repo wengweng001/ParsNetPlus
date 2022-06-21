@@ -17,4 +17,3 @@ Infinite delay current batch prediction -- `InfiniteDelay.py`
 Next batch prediction experiments can be simulated with replacing the dataloader with respective scripts from `dataprep_weakly.load_sensor(labeled_proportion, batchSize, next=False)` to `dataprep_weakly.load_sensor(labeled_proportion, batchSize, next=True)`.
 
 A comparison of classification performance on ParsNet++ included in the paper can be run with `plot-cur.ipynb` and `plot-next.ipynb` (Figure 4).
-# ParsNetPlus
