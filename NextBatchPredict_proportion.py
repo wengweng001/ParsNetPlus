@@ -11,6 +11,8 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.metrics import f1_score,recall_score,precision_score
 
+import warnings
+warnings.filterwarnings('ignore')
 
 def setup_seed(seed):
     torch.manual_seed(seed)
@@ -531,7 +533,7 @@ def GenTrain(net, input1, spc, criterionGen, lrGen, acm, runs, epoch, device):
         h, _ = net.network(x=data1, mode=1)
         _, rSensor = net.network(h=h, mode=2)
 
-        loss = criterionGen(rSensor, data1)
+        loss = criterionGen(rSensor.unsqueeze(0), data1)
         # backward
         optimizer.zero_grad()
         loss.backward(retain_graph=True)
@@ -1012,7 +1014,7 @@ paramstamp = 'init_batch{}_epochs{}_labeled{}%_batchsize{}_epsilon{}_noisestd{}_
 
 ### select random seed
 seedlist = random.sample(range(0, 100), Epoch)
-### To access the result in paper, use seeds below according to corresponding labeled proportion
+## To access the result in paper, use seeds below according to corresponding labeled proportion
 seedlist = [41, 58, 32, 50, 7] # 0.1
 # seedlist = [45, 58, 39, 43, 47] # 0.2
 # seedlist = [16, 30, 86, 79, 40] # 0.3
@@ -1040,7 +1042,6 @@ for e in range(len(seedlist)):
     #     os.mkdir('figures_labelpercent')
         
     if not os.path.isfile(fileName):
-    # if True:
         print(" ...running: ... ")
         Metrics = []
         Accuracy = []
@@ -1052,7 +1053,7 @@ for e in range(len(seedlist)):
 
             ### load dataset
             print('...loading data...')
-            labeled_sensorloader, unlabeled_sensorloader = dataprep_weakly.load_sensor(labeled_proportion, batchSize)
+            labeled_sensorloader, unlabeled_sensorloader = dataprep_weakly.load_sensor(labeled_proportion, batchSize, True)
             nclass = classes
 
             criterion = nn.CrossEntropyLoss()

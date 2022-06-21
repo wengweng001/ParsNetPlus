@@ -13,7 +13,8 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.metrics import f1_score,recall_score,precision_score
 import matplotlib.image as mpimg
-
+import warnings
+warnings.filterwarnings('ignore')
 
 def setup_seed(seed):
     torch.manual_seed(seed)
@@ -110,7 +111,7 @@ class ACM():
 
                 d = []
                 for k in range(self.k):
-                    d.append(torch.norm(data - self.center[k]))
+                    d.append(torch.norm(data - self.center[k]).detach().cpu())
                 idx = np.argmin(d)
                 dis = min(d)
                 k3 = 2 * torch.exp(-dis ** 2) + 1
@@ -541,7 +542,7 @@ def GenTrain(net, input1, spc, criterionGen, lrGen, acm, runs, epoch, device):
         h, _ = net.network(x=data1, mode=1)
         _, rSensor = net.network(h=h, mode=2)
 
-        loss = criterionGen(rSensor, data1)
+        loss = criterionGen(rSensor.unsqueeze(0), data1)
         # backward
         optimizer.zero_grad()
         loss.backward(retain_graph=True)
@@ -864,9 +865,6 @@ class SPC_G():
         return self.grow, self.prune
 
 
-# In[17]:
-
-
 class SPC_D():
     def __init__(self):
         self.bias = []
@@ -1061,7 +1059,7 @@ paramstamp = 'init_batch{}_epochs{}_labeled{}_batchsize{}_epsilon{}_noisestd{}_l
 ### select random seed
 seedlist = random.sample(range(0, 100), Epoch)
 # seedlist = [26, 15, 16, 61, 8] #0.1
-# seedlist = [26, 15, 16, 61, 8] # 0.2
+seedlist = [26, 15, 16, 61, 8] # 0.2
 # seedlist = [42, 70, 41, 38, 61] #0.3
 # seedlist = [40, 25, 92, 11, 74] #0.4
 # seedlist = [3, 1, 91, 46, 95] #0.5

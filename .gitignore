@@ -1,0 +1,12 @@
+**/__pycache__/
+figures_cur/
+figures_infnext/
+figures_next/
+figures_inf/
+results_cur/
+results_inf/
+results_infnext/
+results_next/
+NextBatchPredict.py
+NextBatchPredict_proportion.py
+InfinitedelayNext.py
