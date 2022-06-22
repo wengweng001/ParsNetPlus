@@ -1,7 +1,5 @@
 # ParsNetPlus Pytorch
-Online Weakly Supervised Learning Approach for Quality Monitoring of Complex Manufacturing Process, Complexity, 2021
-
-derived from "Weakly Supervised Deep Learning Approach in Streaming Environments. IEEE BigData 2019: 1195-1202"
+Online Weakly Supervised Learning Approach for Quality Monitoring of Complex Manufacturing Process, Complexity, 2021, derived from "Weakly Supervised Deep Learning Approach in Streaming Environments. IEEE BigData 2019: 1195-1202"
 
 
 # Requirements
